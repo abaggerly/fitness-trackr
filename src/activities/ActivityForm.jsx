@@ -18,10 +18,10 @@ export default function ActivityForm() {
       {token ? (
         <form action={addActivity}>
           <label>
-            <input type="text" name="name" />
-            <input type="text" name="description" />
+            <input type="text" className ="form-control" name="name" />
+            <input type="text" className ="form-control" name="description" />
           </label>
-          <button>Add Activity</button>
+          <button className="btn btn-outline-primary">Add Activity</button>
           {error ? <output>{error}</output> : ""}
           {/* {!"name" ? <output>{error}</output> : ""} */}
         </form>

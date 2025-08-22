@@ -1,9 +1,9 @@
 import { usePage } from "./layout/PageContext";
-
 import Register from "./auth/Register";
 import Login from "./auth/Login";
 import ActivitiesPage from "./activities/ActivitiesPage";
 import Error404 from "./Error404.jsx";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 /**
  * Fitness Trackr is a platform where fitness enthusiasts can share their workouts and

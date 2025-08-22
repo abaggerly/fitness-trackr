@@ -22,20 +22,22 @@ export default function Login() {
 
   return (
     <>
-      <h1>Log in to your account</h1>
+      <h4 className="text-center">Log in to your account</h4>
       <form action={tryLogin}>
         <label>
           Username
-          <input type="text" name="username" required />
+          <input type="text" name="username" className ="form-control" required />
         </label>
         <label>
           Password
-          <input type="password" name="password" required />
+          <input type="password" name="password" className ="form-control" required />
         </label>
-        <button>Login</button>
+        <button className ="btn btn-outline-primary">Login</button>
         {error && <output>{error}</output>}
       </form>
-      <a onClick={() => setPage("register")}>Need an account? Register here.</a>
+      <div className="text-center">
+      <a onClick={() => setPage("register")}><u><b>Need an account? Register here.</b></u></a>
+      </div>
     </>
   );
 }

@@ -6,9 +6,9 @@ export default function DisplayActivities() {
 
   if (data?.length > 0) {
     return (
-      <ul>
+      <ul className="list-group d-flex text-center justify-content-center">
         {data.map((activity) => (
-          <li key={activity.id}>
+          <li className= "list-group-item" key={activity.id}>
             <p>{activity.name}</p>
             <DeleteActivityComponent id={activity.id} />
           </li>
