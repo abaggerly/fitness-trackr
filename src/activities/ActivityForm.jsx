@@ -1,33 +1,33 @@
 import useMutation from "../api/useMutation";
-import { useAuth } from "../auth/AuthContext";
 
 export default function ActivityForm() {
-  const { token } = useAuth();
-  const { mutate, error } = useMutation("POST", "/activities", [
-    "allActivities",
-  ]);
+  const {
+    mutate: add,
+    loading,
+    error,
+  } = useMutation("POST", "/activities", ["activities"]);
 
-  const addActivity = (FormData) => {
-    const name = FormData.get("name");
-    const description = FormData.get("description");
-    mutate({ name, description });
+  const addActivity = (formData) => {
+    const name = formData.get("name");
+    const description = formData.get("description");
+    add({ name, description });
   };
 
   return (
     <>
-      {token ? (
-        <form action={addActivity}>
-          <label>
-            <input type="text" className ="form-control" name="name" />
-            <input type="text" className ="form-control" name="description" />
-          </label>
-          <button className="btn btn-outline-primary">Add Activity</button>
-          {error ? <output>{error}</output> : ""}
-          {/* {!"name" ? <output>{error}</output> : ""} */}
-        </form>
-      ) : (
-        ""
-      )}
+      <h2>Add a new activity</h2>
+      <form action={addActivity}>
+        <label className="form-label">
+          Name
+          <input type="text" name="name" className="form-control"/>
+        </label>
+        <label>
+          Description
+          <input type="text" name="description" className="form-control"/>
+        </label>
+        <button className="btn btn-outline-primary">{loading ? "Adding..." : "Add activity"}</button>
+        {error && <output>{error}</output>}
+      </form>
     </>
   );
 }

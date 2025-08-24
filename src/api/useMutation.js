@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useApi } from "./ApiContext";
 
-
 export default function useMutation(method, resource, tagsToInvalidate) {
   const { request, invalidateTags } = useApi();
 

@@ -1,12 +1,15 @@
+import { useAuth } from "../auth/AuthContext";
+import ActivityList from "./ActivityList";
 import ActivityForm from "./ActivityForm";
-import DisplayActivities from "./DisplayActivities";
 
 export default function ActivitiesPage() {
+  const { token } = useAuth();
+
   return (
     <>
       <h1 className="text-center">Activities</h1>
-      <DisplayActivities />
-      <ActivityForm />
+      <ActivityList />
+      {token && <ActivityForm />}
     </>
   );
 }

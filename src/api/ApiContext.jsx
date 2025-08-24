@@ -1,5 +1,4 @@
 import { createContext, useContext, useState } from "react";
-
 import { useAuth } from "../auth/AuthContext";
 
 export const API = "https://fitnesstrac-kr.herokuapp.com/api";
@@ -10,6 +9,7 @@ export function ApiProvider({ children }) {
   const { token } = useAuth();
   const headers = { "Content-Type": "application/json" };
   if (token) headers["Authorization"] = `Bearer ${token}`;
+
 
   const request = async (resource, options) => {
     const response = await fetch(API + resource, {
@@ -24,9 +24,11 @@ export function ApiProvider({ children }) {
 
   const [tags, setTags] = useState({});
 
+
   const provideTag = (tag, query) => {
     setTags({ ...tags, [tag]: query });
   };
+
 
   const invalidateTags = (tagsToInvalidate) => {
     tagsToInvalidate.forEach((tag) => {

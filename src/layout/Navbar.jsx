@@ -1,24 +1,23 @@
 import { useAuth } from "../auth/AuthContext";
-import { usePage } from "./PageContext";
+import { NavLink } from "react-router";
 
-/** Navbar with site navigation links */
 export default function Navbar() {
   const { token, logout } = useAuth();
-  const { setPage } = usePage();
+
   return (
-    
-      <header className ="d-flex justify-content-center bg-dark text-white">
-      
-       <div className = "m-3"><a onClick={() => setPage("activities")}>Activities</a></div> 
+    <header className="text-center">
+      <h4>FitnessTrackr <span className="text-danger">Pro</span></h4>
+      <nav className="d-flex justify-content-center">
+        <NavLink to="/activities" className="text-danger link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover p-2">Activities</NavLink>
         {token ? (
-         <div className = "m-3"><a onClick={() => logout()}>Log out</a></div> 
+          <a className="link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover p-2" onClick={() => logout()}>Logout</a>
         ) : (
           <>
-           <div className = "m-3"><a onClick={() => setPage("register")}>Register</a></div> 
-            <div className = "m-3"><a onClick={() => setPage("login")}>Login</a></div>
+            <NavLink to="/register" className="text-danger link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover p-2">Register</NavLink>
+            <NavLink to="/login" className="text-danger link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover p-2">Login</NavLink>
           </>
         )}
-     
+      </nav>
     </header>
   );
 }

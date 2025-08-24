@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
-import { usePage } from "../layout/PageContext";
+import { useNavigate, Link } from "react-router";
 
-/** A form that allows users to log into an existing account. */
+
 export default function Login() {
   const { login } = useAuth();
-  const { setPage } = usePage();
+  const navigate = useNavigate();
 
   const [error, setError] = useState(null);
 
@@ -14,7 +14,7 @@ export default function Login() {
     const password = formData.get("password");
     try {
       await login({ username, password });
-      setPage("activities");
+      navigate("/activities");
     } catch (e) {
       setError(e.message);
     }
@@ -22,21 +22,25 @@ export default function Login() {
 
   return (
     <>
-      <h4 className="text-center">Log in to your account</h4>
+    <div className="text-center border p-4">
+      <h4>Log in to your account</h4>
+      
       <form action={tryLogin}>
-        <label>
+        <label className="form-label">
           Username
-          <input type="text" name="username" className ="form-control" required />
+          <input type="text" name="username" className="form-control" required />
         </label>
         <label>
           Password
-          <input type="password" name="password" className ="form-control" required />
+          <input type="password" name="password" className="form-control" required />
         </label>
-        <button className ="btn btn-outline-primary">Login</button>
+        <div className="m-3">
+        <button className="btn btn-outline-primary">Login</button>
         {error && <output>{error}</output>}
+        </div>
       </form>
-      <div className="text-center">
-      <a onClick={() => setPage("register")}><u><b>Need an account? Register here.</b></u></a>
+      
+      <Link to="/register">Need an account? Register here.</Link>
       </div>
     </>
   );
